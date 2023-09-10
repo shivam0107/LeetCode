@@ -8,17 +8,21 @@ public:
             int temp = int(num[i]);
             if(temp % 2 == 0)
             {
+                num.erase(i);
                 continue;
             }
             else{
-                ans = num.substr(0 , i+1);
+                // ans = num.substr(0 , i+1);
+                num.erase(i+1 , num.length()-1);
                 break;
             }
            
            
         }
+
+        
        
-        return ans;
+        return num;
         
     }
 };
