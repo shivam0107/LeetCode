@@ -6,15 +6,21 @@ public:
        
         //base case--
         if(b == 0) return 1;
-        // if(b == 1) return a;
+        if(b == 1) return a;
 
         long long ans = power(a , b/2);
-        ans *= ans;
-        ans %= mod;
-        if(b%2) ans *= a;
-        ans %= mod;
+       if(b % 2 == 0){
+           ans *= ans;
+           ans %= mod;
+           return ans;
+       }
+       else{
+           ans = a * ans * ans;
+           ans %= mod;
+           return ans;
+       }
 
-        return ans;
+        
     } 
     int countGoodNumbers(long long n) {
 
