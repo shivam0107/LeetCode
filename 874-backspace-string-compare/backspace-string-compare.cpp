@@ -23,12 +23,36 @@ public:
         return str;
     }
 
+    string getString(string s){
+        int cnt = 0;
+         string str;
+        for(int i = s.length()-1; i>=0; i--){
+            if(s[i] == '#'){
+                cnt++;
+            }
+
+           
+
+            if(s[i] != '#'){
+                if(cnt > 0){
+                    cnt--;
+                }
+                else{
+                    str += s[i];
+                }
+            }
+           
+        }
+
+        return str;
+    }
+
     bool backspaceCompare(string s, string t) {
 
-        string s1 = backspace(s);
-        string s2 = backspace(t);
+        // string s1 = backspace(s);
+        // string s2 = backspace(t);
 
-        if(s1 == s2){
+        if(getString(s) == getString(t)){
             return true;
         }
         
