@@ -3,7 +3,7 @@ public:
     string largestOddNumber(string num) {
 
         
-        string ans = "";
+        // string ans = "";
         for(int i = num.length()-1; i >= 0; i--){
             int temp = int(num[i]);
             if(temp % 2 == 0)
