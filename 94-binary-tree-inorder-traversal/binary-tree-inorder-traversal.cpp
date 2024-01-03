@@ -23,10 +23,40 @@ public:
 
     }
 
+    void iterativeInorder(TreeNode *root , vector<int> &nums){
+     stack<TreeNode*> st;
+    TreeNode* temp = root;
+    // if(root == NULL)
+    //     return ans;
+
+    while (true)
+    {
+        if (temp != NULL)
+        {
+            st.push(temp);
+            temp = temp->left;
+        }
+        else
+        {
+            if (st.empty() == true)
+                break;
+            temp = st.top();
+            st.pop();
+
+            nums.push_back(temp->val);
+            temp = temp->right;
+        }
+    }
+  
+
+ }
+
     vector<int> inorderTraversal(TreeNode* root) {
         
         vector<int> ans;
-        inorderTraversal(root , ans);
+        if(root == NULL) return ans;
+        iterativeInorder(root , ans);
+
 
         return ans;
     }
