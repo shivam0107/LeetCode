@@ -12,7 +12,7 @@
 class Solution {
 public:
     
-    int maxi = INT_MIN;
+  
     int findH(TreeNode* root){
          if(root ==NULL) {
             return 0;
@@ -26,24 +26,28 @@ public:
         return max(lh , rh) + 1;
     }
     
-    void findMax(TreeNode* root , int &maxi){
+    int findMax(TreeNode* root , int &maxi){
          if(root ==NULL) {
-            return;
+            return 0;
         }
 
-        int lh = findH(root->left);
-        int rh = findH(root->right);
+        // int lh = findH(root->left);
+        // int rh = findH(root->right);
+
+
+       int lh = findMax(root->left , maxi);
+        int rh = findMax(root->right , maxi);
 
          maxi = max(maxi , lh+rh);
 
-        findMax(root->left , maxi);
-        findMax(root->right , maxi);
         
-
+        return max(rh , lh)+1;
     }
 
     int diameterOfBinaryTree(TreeNode* root) {
        int maxi = INT_MIN;
+       //brute force O(n2)
+       //O(n) - for traversing each node O(n) for getting height of each node
        findMax(root , maxi);
         return maxi;
     }
