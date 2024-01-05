@@ -12,6 +12,19 @@
 class Solution {
 public:
 
+    int dfsHeight(TreeNode* root){
+        if(root == NULL) return 0;
+
+        int lh = dfsHeight(root->left);
+        if(lh == -1) return -1;
+        int rh = dfsHeight(root->right);
+        if(rh == -1) return -1;
+
+        if(abs(rh-lh) > 1) return -1;
+
+        return 1 + max(lh , rh);
+    }
+
     int findH(TreeNode* root){
         if(root == NULL) return 0;
 
@@ -27,17 +40,21 @@ public:
             return true;
         }
 
-        int lh = findH(root->left);
-        int rh = findH(root->right);
+        return dfsHeight(root) != -1;
 
-        if(abs(lh-rh) > 1) return false;
+        //O(N) for traversal , //O(N) for finding height
 
-        bool left = isBalanced(root->left);
-        bool right = isBalanced(root->right);
+        // int lh = findH(root->left);
+        // int rh = findH(root->right);
 
-        if(!left || !right) return false;
+        // if(abs(lh-rh) > 1) return false;
 
-        return true;
+        // bool left = isBalanced(root->left);
+        // bool right = isBalanced(root->right);
+
+        // if(!left || !right) return false;
+
+        // return true;
 
     }
 };
