@@ -13,7 +13,7 @@ class Solution {
 public:
     void getleaf(TreeNode* root , vector<int> &nums){
         if(root == NULL) return;
-        if(root->left  == NULL && root->right == NULL && root != NULL) 
+        if(root->left  == NULL && root->right == NULL) 
         {
             nums.push_back(root->val);
             return;
