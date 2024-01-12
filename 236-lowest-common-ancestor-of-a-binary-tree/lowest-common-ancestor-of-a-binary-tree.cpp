@@ -24,40 +24,67 @@ public:
 
         nums.pop_back();
         return false;
+    }
 
+    TreeNode* getNode(TreeNode* root , TreeNode* p, TreeNode* q , TreeNode* &node){
+        if(!root) return NULL;
+
+        if(root == p){
+           node =  root;
+           return node;
+        }
+        if(root == q) {
+            node = root;
+            return node;
+        }
+
+       TreeNode* left =  getNode(root->left , p , q , node);
+       TreeNode* right = getNode(root->right , p , q , node);
+
+
+        if(left && right){
+            node = root;
+        }
+        else if(left){
+            node = left;
+        }
+        else if(right){
+            node = right;
+        }
+        else{
+            return NULL;
+        }
+
+        return node;
 
     }
 
-
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
-        vector<TreeNode*> v1 , v2;
-        getPath(root , v1 , p);
-        getPath(root , v2 , q);
-
+        // optimized solution
         TreeNode* node = NULL;
+        getNode(root , p  , q , node);
 
-        for(auto i : v1){
-            cout<<i->val<<" ";
-        }
 
-cout<<endl;
-        for(auto i : v2){
-            cout<<i->val<<" ";
-        }
+        //brute force approach O(n) , O(2n) extra space
+        
+        // vector<TreeNode*> v1 , v2;
+        // getPath(root , v1 , p);
+        // getPath(root , v2 , q);
 
-        int n = v1.size();
-        int m = v2.size();
-        n = min(n , m);
+        // TreeNode* node = NULL;
+        // int n = v1.size();
+        // int m = v2.size();
+        // n = min(n , m);
 
-        for(int i = 0; i<n; i++ ){
-            if(v1[i] == v2[i]){
-              node = v1[i];
-            }
-            else{
-                break;
-            }
-        }
+        // for(int i = 0; i<n; i++ ){
+        //     if(v1[i] == v2[i]){
+        //       node = v1[i];
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }
 
         return node;
     }
