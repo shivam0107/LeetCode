@@ -1,44 +1,27 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-               vector <int> ans;
+        map<int , int> mp;
 
-        int size  = arr.size();
-        sort(arr.begin() , arr.end());
+        for(auto i : arr){
+            mp[i]++;
+        }
 
-        int i = 0;
-         while(i<size){
-             int count = 1;
-             for(int j =i+1; j<size; j++){
-                 if(arr[i] == arr[j]){
-                     count++;
-                 }
-                 else{
-                     break;
-                 }
+        vector<int> v;
 
-             }
-            
-            ans.push_back(count);
+        for(auto i : mp){
+            cout<<i.second<<" ";
+            v.push_back(i.second);
+        }
+        sort(v.begin() , v.end());
 
-            i = i+count;
+        for(int i = 1; i<v.size(); i++){
+            if(v[i] == v[i-1]){
+                return false;
+            }
+        }
 
-         }
-
-         size  = ans.size();
-
-         sort(ans.begin() , ans.end());
-
-         for(int i=0; i<size-1; i++){
-             if(ans[i] == ans[i+1]){
-                 return false;
-
-             }
-
-         }
-
-
-             return true;
+        return true;
 
         
     }
