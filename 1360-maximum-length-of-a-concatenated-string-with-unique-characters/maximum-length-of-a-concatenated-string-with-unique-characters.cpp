@@ -15,10 +15,14 @@ public:
         return true;
     }
 
-    int maxLen(int n , vector<string> &ans , vector<string> &arr){
+    int maxLen(int n , vector<string> &ans , vector<string> &arr , unordered_map<string,int> &dp){
         if(n < 0 ){
             return 0;
         }
+        string curr="";
+        for(auto &val:ans) curr+=val;
+
+        if(dp.find(curr)!=dp.end()) return dp[curr];
 
         ans.push_back(arr[n]);
         unordered_map<char , int> mp;
@@ -35,12 +39,14 @@ public:
             }
         }
 
-        int left = 0, right = 0;
-        if(f) left = arr[n].length() + maxLen(n-1 , ans , arr);
-        ans.pop_back();
-        right = maxLen(n-1 , ans , arr);
 
-        return max(left , right);
+       
+
+        int left = 0, right = 0;
+        if(f) left = arr[n].length() + maxLen(n-1 , ans , arr , dp);
+        ans.pop_back();
+        right = maxLen(n-1 , ans , arr , dp);
+       return dp[curr]=max(left,right);
     }
 
 
@@ -51,7 +57,8 @@ public:
         int n = arr.size()-1;
 
         vector<string> ans;
-        return maxLen(n , ans, arr);
+       unordered_map<string,int> dp;
+        return maxLen(n , ans, arr , dp);
 
 
 
