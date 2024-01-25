@@ -59,6 +59,36 @@ public:
     }
 
 
+    
+    int fSpaceOp(int n , int m , string &t1 , string &t2){
+        //base case
+        vector<int> prev(m+1 , 0) , curr(m+1 , 0);
+
+        for(int j = 0; j<=m; j++) prev[j] = 0;
+
+        for(int i = 1; i<=n; i++){
+            for(int j = 1; j<=m; j++){
+                     if(t1[i-1] == t2[j-1]){
+                         curr[j] =  1+prev[j-1];
+                     }
+                     else{
+                         curr[j] =  max(curr[j-1] , prev[j]);
+                     }
+
+               
+                
+            }
+             prev = curr;
+        }
+
+        return prev[m];
+
+       
+
+    }
+
+
+
 
     int longestCommonSubsequence(string text1, string text2) {
         int n = text1.length();
@@ -68,6 +98,6 @@ public:
         // return f(n-1 , m-1 , text1 , text2);
         vector<vector<int>> dp(n+1 , vector<int>(m+1 , -1));
         //  return fMem(n , m , text1 , text2 , dp);
-         return fTab(n , m , text1 , text2 , dp);
+         return fSpaceOp(n , m , text1 , text2);
     }
 };
