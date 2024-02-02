@@ -18,7 +18,7 @@ public:
         int ans = INT_MAX;
 
         //find peek element
-        while(l <= h){
+        while(l < h){
             int mid = (l+h)/2;
 
             if(a.get(mid) < a.get(mid+1)){
