@@ -20,17 +20,17 @@ public:
              cout<<temp[i];
         }
         for(int i = 0; i< temp.size(); i++){
-          if (k > 0) {
-            if (temp[i] <= k) {
-                k -= temp[i];
+            if(k == 0) break;
+            if(temp[i] <= k){
+                
+                k = k- temp[i];
                 temp[i] = 0;
-            } else {
-                temp[i] -= k;
+            }
+            else if(temp[i] > k){
+               temp[i] -= k;
+                
                 k = 0;
             }
-        } else {
-            break;
-        }
 
            
         }
