@@ -1,5 +1,9 @@
 class Solution {
 public:
+
+    
+
+
     int numSubarraysWithSum(vector<int>& nums, int goal) {
         int ans = 0;
         long long sum = 0;
