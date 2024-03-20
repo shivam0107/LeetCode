@@ -36,14 +36,40 @@ public:
                 dp[i][j] = min(d , dig);
             }
         }
-
-        
-
         return dp[0][0];
-     
+    }
 
 
+    
+    int fSpace( int n ,vector<vector<int>>& triangle){
 
+        vector<int> front(n  , INT_MAX);
+
+        for(int j = 0; j<n; j++){
+            front[j] = triangle[n-1][j];
+        }
+
+      
+        for(int i = n-2; i >= 0; i--){
+
+
+            vector<int> curr(n , INT_MAX);
+            
+            for(int j = i; j >= 0; j--){
+               
+              
+                int d = triangle[i][j] + front[j];
+
+           
+                 int dig = triangle[i][j] + front[j+1];
+
+               curr[j] = min(d , dig);
+            }
+
+
+            front = curr;
+        }
+        return front[0];
     }
 
     int minimumTotal(vector<vector<int>>& triangle) {
@@ -53,8 +79,9 @@ public:
 
 
 
-        // return f(m-1 , n-1 , triangle , dp);
+        
         // return f(0 , 0 , n, triangle , dp);
-        return ftab( n, triangle );
+        // return ftab( n, triangle );
+        return fSpace( n, triangle );
     }
 };
