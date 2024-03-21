@@ -24,32 +24,29 @@ public:
 
     }
 
-
-
     ListNode* reverseList(ListNode* head) {
         
-        // if(head == NULL || head -> next == NULL){
-        //     return head;
-        // }
-        
-        // ListNode* prev = NULL;
-        // ListNode* curr = head;
-        // ListNode* forward = NULL;
+        if(head == NULL || head->next == NULL) return head;
 
-        // while(curr != NULL){
-        //     forward = curr->next;
-        //     curr->next = prev;
-        //     prev = curr;
-        //     curr = forward;
-        // }
-
-        // return prev;
-
-        ListNode* curr = head;
         ListNode* prev = NULL;
+        ListNode* curr = head;
 
-        reverse(head , curr, prev);
+        while(curr != NULL){
+            ListNode* forward = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+        }
 
-        return head;
+        
+        return prev;
+
+
+        // ListNode* curr = head;
+        // ListNode* prev = NULL;
+
+        // reverse(head , curr, prev);
+
+        // return head;
     }
 };
