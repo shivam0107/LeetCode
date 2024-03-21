@@ -59,6 +59,50 @@ public:
         return mini;
     }
 
+
+
+    
+    int fspace( int n , int m , vector<vector<int>>& matrix  ){
+      vector<int> prev (m , -1);
+
+
+        for(int j = 0 ; j<m; j++){
+            prev[j] = matrix[n-1][j];
+
+        }
+
+        for(int i = n-2; i >= 0; i--){
+
+            vector<int> curr(m , -1);
+            
+            for(int j = m-1; j >= 0; j--){
+                int x = INT_MAX;
+                if(j-1 >= 0)
+                x = matrix[i][j] + prev[j-1];
+
+                int y = matrix[i][j] + prev[j];
+
+                int  z = INT_MAX;
+                if(j+1 < m)
+                z = matrix[i][j] + prev[j+1];
+
+
+                curr[j] = min(x , min(y , z));
+
+            }
+
+            prev = curr;
+        }
+
+        int mini = prev[0];
+        for(int j = 1; j < m; j++){
+            mini = min(mini ,prev[j]);
+        }
+
+        return mini;
+    }
+
+
     int minFallingPathSum(vector<vector<int>>& matrix) {
 
         
@@ -75,7 +119,8 @@ public:
 
     //  return ans;
 
-    return ftab(n , m , matrix );
+    // return ftab(n , m , matrix );
+    return fspace(n , m , matrix );
 
     }
 };
