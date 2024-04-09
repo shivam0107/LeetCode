@@ -11,6 +11,13 @@ public:
         }
 
         while(!q.empty()){
+
+            if(q.size() == 1){
+                int n = q.front().second;
+                time += n;
+                break;
+            }
+
             auto i = q.front();
             q.pop();
 
