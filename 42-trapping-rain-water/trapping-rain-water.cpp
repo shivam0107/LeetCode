@@ -3,13 +3,17 @@ public:
     int trap(vector<int>& height) {
         int n = height.size();
         int ans = 0;
+        //using two pointer -- 
+        //TC - O(n)
+        //SC - O(1)
         int l = 0 , r = n-1 ;
         int leftMax = 0;
         int rightMax = 0;
 
         for(int i = 0; i<n; i++){
-
-            if(height[l] <= height[r]){
+            //this condition will make sure that there will be
+            // minimum of height or right of height[i], >= height[l]
+            if(height[l] <= height[r]){ 
                 if(height[l] >= leftMax) 
                 {
                     leftMax = height[l];
