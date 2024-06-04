@@ -33,10 +33,10 @@ public:
                 }
 
 
-                if(i.second == 1 && f == 1){
-                    longest += 1;
-                    f = 0;
-                }
+                // if(i.second == 1 && f == 1){
+                //     longest += 1;
+                //     f = 0;
+                // }
             }
         
         // else{
